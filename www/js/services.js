@@ -19,7 +19,6 @@ function MongoService($http) {
 	var _this = this;
 	
 	this.fetchDashboardData = function() {
-		/*var response = '[ { "_id" : { "$oid" : "57a5d0d9dcba0f71400fc4e8"} , "id" : 1 , "exp_mom" : 9514 , "exp_tai" : 5184 , "exp_private" : 80 , "ehome" : 1200 , "eshop" : 5370 , "rent_shop" : "" , "rent_room" : "4_8_2016"} ]';*/
 		return $http.get(_this.endPointDashboard);
 	}
 }
@@ -34,7 +33,6 @@ function AppService(MongoService, LocalStorageService) {
 			return JSON.parse(data);
 		}
 	}
-	/*[ { "_id" : { "$oid" : "57a5d0d9dcba0f71400fc4e8"} , "id" : 1 , "exp_mom" : 9514 , "exp_tai" : 5184 , "exp_private" : 80 , "ehome" : 1200 , "eshop" : 5370 , "rent_shop" : "" , "rent_room" : "4_8_2016"} ]*/
 }
 
 

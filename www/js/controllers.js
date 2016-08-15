@@ -1,55 +1,41 @@
-function AppCtrl($scope, $ionicModal, $timeout, $state, AppService) {
-
-    // Form data for the login modal
-    $scope.loginData = {};
-
-    // Create the login modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/login.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
-
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function() {
-        $scope.modal.hide();
-    };
-
-    // Open the login modal
-    $scope.login = function() {
-        $scope.modal.show();
-    };
+function AppCtrl($scope, $ionicModal, $timeout, $state, AppService, $ionicLoading) {
 
     $scope.dashboard = function() {
         $state.go('app.dashboard');
     }
 
-    // Perform the login action when the user submits the login form
-    $scope.doLogin = function() {
-        console.log('Doing login', $scope.loginData);
+    $scope.showLoader = function(loaderMessage) {
+        $ionicLoading.show({
+            template: loaderMessage
+        }).then(function(){
+            console.log("The loading indicator is now displayed");
+        });
+    };
 
-        // Simulate a login delay. Remove this and replace with your login
-        // code if using a login system
-        $timeout(function() {
-            $scope.closeLogin();
-        }, 1000);
+    $scope.hideLoader = function(){
+        $ionicLoading.hide().then(function(){
+            console.log("The loading indicator is now hidden");
+        });
     };
 }
 
 function DashboardCtrl($scope, AppService, MongoService) {
 
+    $scope.showLoader('Loading..');
     var dashboardPromise = MongoService.fetchDashboardData();
+    var _this = this;
 
     dashboardPromise.then(function(data) {
-        console.log(data.data[0]);
+        $scope.dashboardData = _this.buildDashboardData(data.data[0]);
+        $scope.hideLoader();
     }, function(err) {
         console.log('error while resolving promise, dashboardPromise');
         console.info(err);
+        $scope.hideLoader();
     });
-    //$scope.expenseData
 
-    this.buildDashboardData = function() {
-        var data = $scope.expenseData[0];
+    this.buildDashboardData = function(data) {
+
         return [
             { id: data.id, title: 'Expense - Mom', value: data.exp_mom },
             { id: data.id, title: 'Expense - Tai', value: data.exp_tai },
@@ -61,8 +47,6 @@ function DashboardCtrl($scope, AppService, MongoService) {
             { id: data.id, title: 'Month', value: 0 }
         ];
     }
-
-    $scope.dashboardData = this.buildDashboardData();
 }
 
 function PlaylistCtrl($scope, $stateParams) {
