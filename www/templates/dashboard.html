@@ -1,0 +1,12 @@
+<ion-view view-title="Dashboard">
+	<ion-nav-back-button></ion-nav-back-button>
+	<ion-content>
+		<div class="list">
+			<a class="item item-icon-left item-icon-right" href="#" ng-repeat="data in dashboardData">
+    			<i class="icon ion-android-star"></i>
+    			{{data.title}}
+    			<span class="badge badge-royal">{{data.value}}</span>
+  			</a>
+		</div>
+	</ion-content>
+</ion-view>
