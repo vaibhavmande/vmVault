@@ -7,15 +7,11 @@ function AppCtrl($scope, $ionicModal, $timeout, $state, AppService, $ionicLoadin
     $scope.showLoader = function(loaderMessage) {
         $ionicLoading.show({
             template: loaderMessage
-        }).then(function(){
-            console.log("The loading indicator is now displayed");
-        });
+        }).then(function(){});
     };
 
     $scope.hideLoader = function(){
-        $ionicLoading.hide().then(function(){
-            console.log("The loading indicator is now hidden");
-        });
+        $ionicLoading.hide().then(function(){});
     };
 }
 
