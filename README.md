@@ -1,25 +1,16 @@
-Ionic App Base
+vmVault Ionic app
 =====================
 
-A starting project for Ionic that optionally supports using custom SCSS.
+The app pulls data form mlab and displays data for current months expense
 
 ## Using this project
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
-
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
-
-```bash
-$ npm install -g ionic
-```
-
-Then run: 
-
-```bash
-$ ionic start myProject tabs
-```
+Build project using Ionic CLI. 
+Install apk directly to phone
 
 More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+## Backend
+
+Expenses are recorded in google spreadsheet and are saved in mongoDB using [mLab Data API](http://docs.mlab.com/data-api/)
+More info at
